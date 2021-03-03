@@ -13,3 +13,7 @@ services:
       MYSQL_PASSWORD: Absa
     ports:
       - 3889:3306
+    volumes:
+     - ./files:/var/lib/mysql
+     - ./logs:/var/log/mysql
+     - ./conf:/etc/mysql/conf.d
