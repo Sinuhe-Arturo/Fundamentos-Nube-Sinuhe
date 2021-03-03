@@ -7,11 +7,11 @@ repositorio de tareas de la materia fundamentos de la nube de Sinuhe Arturo Evia
 en la nube desde el computador.)
 
 "mydatabases"
-(este es el nombre asignado actualmente para la base de datos que se utilizó para lla demostración del uso de Docker)
+(Nombre del contenedor donde esta almacenado la imagen de MariaDB entre otros componentes que son necesarios.)
 
 "image: MariaDB"
 (esta linea de código representa la imagen ISO que se utiliza para instalar la aplicación MariaDB, en caso de seleccionar
-una versión en especifico se colocan los dos puntos y se selecciona la version deseada de forma manual. en caso de no seleccionar alguno
+una versión en específico se colocan los dos puntos y se selecciona la versión deseada de forma manual. en caso de no seleccionar alguno
 se instala una versión más reciente.)
 
 "restart:always"
@@ -43,4 +43,34 @@ y el segundo se refiere al puerto que el usuario desea conectarse.)
 - ./files:/var/lib/mysql
 - ./logs:/var/log/mysql
 - ./conf:/etc/mysql/conf.d
-(estas lineas nos indican donde sera guardado desde la pc hasta el lugar deseado)
+(estas líneas nos indican donde será guardado desde la pc hasta el lugar deseado)
+---------------------------Docker-compose web----------------
+"version: '3.1'"
+(Versión de la aplicación Docker que se encuentra actualmente)
+
+"services:"
+servicio que se genera al momento de empezar la aplicación
+
+"measurementapp:"
+(Nombre del contenedor que tiene la imagen de la aplicación)
+
+"image: webdevops/php-apache:7.4"
+(imagen de la aplicación apache, en esta opción utilizamos una selección de versión)
+"restart: always"
+(en caso de que el contenedor tenga una caída, este comando reinicia de forma inmediata el
+contendor)
+
+"environment:"
+(genera el entorno virtual de la base de datos permitiendo utilizar la funcionalidad de la aplicación
+sin necesidad de instalarse.)
+
+"PHP_DISPLAY_ERRORS: 1"
+(comando que permite visualizar los errores que puedan ocasionarse)
+"ports:"
+  - 82:80
+  (son los puertos que se van a utilizar para conectar la base de datos en linea. el numero de la derecha significa el dominio default
+  y el segundo se refiere al puerto que el usuario desea conectarse.)
+
+"volumes:"
+ - ./app:/app
+ (estas líneas nos indican donde será guardado desde el pc hasta el lugar deseado)
